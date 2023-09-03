@@ -1,2 +1,1 @@
-# hardhw
-ne mogu :(
+print ('Hello!')
