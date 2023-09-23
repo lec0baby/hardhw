@@ -1,5 +1,5 @@
-a = int(input())
-b = int(input())
+a = float(input())
+b = float(input())
 if a > b:
     print('1-ое число больше 2-ого')
 elif a < b:
