@@ -1,5 +1,5 @@
-x = int(input())
-y = int(input())
+x = float(input())
+y = float(input())
 if (x > 0) and ( (y > 0)):
     print ('Точка лежит в 1-ой координатной плоскости')
 elif (x < 0) and (y > 0):
