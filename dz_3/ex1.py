@@ -1,10 +1,6 @@
-x = input()
-
-def func(x):
-    s = []
-    while x:
-        s.append(x)
-        x = input()
-    return s
-
-print (func(x))
+def frik(a):
+    ans = []
+    while a:
+        ans.append(a)
+        a = input()
+    return ans

@@ -1,8 +1,12 @@
-#from ex1 import func
-from collections import Counter 
+from ex1 import frik`
+from collections import defaultdict
 
-#ls = func(input())
-ls = ['a', 'a', 'b', 1, 1, 2, 3, 3, 3]
-a = dict(Counter(ls))
+print('Элемент | Частота')
+elements = frik(input())
 
-print(a)
+ans = defaultdict(int)
+
+for el in elements:
+    ans[el] += 1
+
+print(*[f'{i} | {ans[i]}' for i in ans], sep = '\n')

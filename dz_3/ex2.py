@@ -1,12 +1,12 @@
-n = int(input())
 def wssa(n):
-    if (n > 0 and n < 3) or n == 12:
+    if n in [1, 2, 12]:
         return 'Зима'
-    elif (n > 2 and n < 6):
+    elif n in [3, 4, 5]:
         return 'Весна'
-    elif (n > 5 and n < 9):
+    elif n in [6, 7, 8]:
         return 'Лето'
-    else:
+    elif n in [9, 10, 11]:
         return 'Осень'
-print (wssa(n))
+    return 'Ошибка'
+
 
