@@ -1,4 +1,4 @@
-from dz3.ex1 import frik
+from general.dz3.ex1 import frik
 
 def move(k):
     lst = frik(input())
