@@ -1,4 +1,4 @@
-from ex1 import frik
+from ex3_1 import frik
 from collections import defaultdict
 
 elements = frik(input())

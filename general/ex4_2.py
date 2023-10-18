@@ -9,3 +9,6 @@ def fact(n):
             f = f * n
             n -= 1
         return f
+
+if __name__ == '__main__':
+    print(fact(int(input())))

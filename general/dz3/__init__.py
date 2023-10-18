@@ -1,1 +1,0 @@
-from general.dz3.ex1 import frik
