@@ -4,7 +4,7 @@ from general.ex4_3 import check
 @pytest.mark.parametrize(
     ('x'),
     [
-        ([1, 2, 'Hi', True]),
+        ([1, 2, 'Hi', False]),
         ({1, 3, 'Bye', False}),
         ('true')
     ]
@@ -17,7 +17,7 @@ def test_true(x):
     ('x'),
     [
         ([1, 2, 3, 4, 1]),
-        ({1, 2, 2, 3}),
+        ([1, 2, 2, 3, 'OO']),
         ('Hello')
     ]
 )

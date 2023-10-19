@@ -1,6 +1,7 @@
 from ex3_1 import frik
 
 def move(k: int, pos: list):
+    k = k % len(pos)
     pos = pos[-k:] + pos[:-k]
     return pos
 

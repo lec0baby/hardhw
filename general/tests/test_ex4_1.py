@@ -1,5 +1,5 @@
 import pytest
-from ..ex4_1 import move
+from general.ex4_1 import move
 
 @pytest.mark.parametrize(
     ('k', 'pos', 'result'),
