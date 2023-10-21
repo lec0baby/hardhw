@@ -1,17 +1,18 @@
 import pytest
-from dz4.ex4_3 import check
+from dz4.ex4_3 import is_unique
 
 @pytest.mark.parametrize(
     ('x'),
     [
         ([1, 2, 'Hi', False]),
         ({1, 3, 'Bye', False}),
-        ('true')
+        ('true'),
+        ([1, True])
     ]
 )
 
 def test_true(x):
-    assert check(x) is True
+    assert is_unique(x) is True
     
 @pytest.mark.parametrize(
     ('x'),
@@ -23,4 +24,4 @@ def test_true(x):
 )
 
 def test_false(x):
-    assert check(x) is False
+    assert is_unique(x) is False
