@@ -1,4 +1,4 @@
-from ex3_1 import frik
+from dz3.ex3_1 import frik
 
 def move(k: int, pos: list):
     k = k % len(pos)

@@ -1,5 +1,5 @@
 import pytest
-from general.ex4_3 import check
+from dz4.ex4_3 import check
 
 @pytest.mark.parametrize(
     ('x'),

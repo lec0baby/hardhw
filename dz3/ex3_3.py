@@ -4,5 +4,4 @@ def fibonachi(n):
         f.append(f[-2] + f[-1])
     return f[:n]
 
-
-
+print(fibonachi(int(input())))
