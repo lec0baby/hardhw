@@ -1,10 +1,6 @@
 def is_unique(x):
-    s = set()
-    for i in x:
-        if i in s: 
-            return False
-        s.add(i)
-    return True
+    x = [(i, type(i)) for i in x]
+    return len(x) == len(set(x))
 
 if __name__ == '__main__':
     print(is_unique(input()))
