@@ -6,4 +6,4 @@ def move(k, pos):
     return pos
 
 if __name__ == '__main__':
-    print(move(int(input()), frik(int(input()))))
+    print(move(int(input()), frik(input())))
