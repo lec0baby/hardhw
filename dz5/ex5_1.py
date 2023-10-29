@@ -1,7 +1,11 @@
 def binnary_search(num, lst):
+    while lst.count(num) >  1:
+        lst.remove(num)
+    
     low = 0 
     high = len(lst) - 1
     mid = len(lst) // 2
+    
     
     while lst[mid] != num and low <= high:
         if lst[mid] < num:
@@ -12,9 +16,8 @@ def binnary_search(num, lst):
            
     if low > high:
         return None
-    elif lst.count(num) > 1:
-        mid = lst.index(num)
-    return mid
-
+    else:
+        return mid
+    
 if __name__ == '__main__':
-    print(binnary_search(1, [0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1]))
+    print(binnary_search(7, [7, 7, 7, 7]))
