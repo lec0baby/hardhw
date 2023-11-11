@@ -1,4 +1,4 @@
-def binnary_search(num: int, lst: list):
+def binnary_search(num, lst):
     result = None
     low, high = 0, len(lst) - 1
     while low <= high:
