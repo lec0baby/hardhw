@@ -1,8 +1,7 @@
 from collections import deque
-from typing import Callable, Any
 
 
-def bfs(graph: dict[Any, list], start, target, function: Callable[Any, Any]) -> int | None:
+def bfs(graph, start, target, function):
     visited = set()
     queue = deque([(start, 0)])
 
