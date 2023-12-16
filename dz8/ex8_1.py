@@ -18,4 +18,5 @@ def quick_sort(arr):
 def stalin_sort(arr):
     if len(arr) <= 1:
         return arr
-    return [arr[i] for i in range(len(arr) - 1) if arr[i] <= arr[i + 1]]
+#    return [arr[i] for i in range(len(arr) - 1) if arr[i] <= arr[i + 1]]
+# how to fix it?
