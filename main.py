@@ -1,3 +1,7 @@
-lst = [1, 2, 3, 4, 5]
-lst1 = [1, 2, 3]
-print([lst - lst1])
+def input_matrix(k1, k2):
+    matr = [0] * k2
+    for i in range(k2):
+        matr[i] = input().split()
+    return matr
+    
+print(input_matrix(3, 3))
