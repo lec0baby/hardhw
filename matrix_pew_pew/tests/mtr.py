@@ -17,4 +17,4 @@ class Matrix:
         for j in range(self.rows):
             output += ' '.join(str(i) for i in self.elements[j])
             output += '\n'
-        return output
+        return output + f'Количесвто строк: {self.rows}\n' + f'Количество столбцов: {self.columns}'
