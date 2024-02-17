@@ -6,7 +6,14 @@ class Matrix:
 
     def input_matrix(self): 
         self.elements = []
-        self.rows, self.columns = int(input()), int(input())
+        while True:
+            try:
+                print('Введите числа:')
+                self.rows, self.columns = int(input()), int(input())
+            except ValueError:
+                continue 
+            else:
+                break
         for i in range(self.rows):
             self.elements.append(list(map(int, input(f'Введите элементы строки №{i+1}: ').split())))        
             if len(self.elements[i]) != self.columns:
