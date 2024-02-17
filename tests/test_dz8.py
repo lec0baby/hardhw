@@ -1,7 +1,7 @@
 import pytest
-from dz8.ex8_1 import bubble_sort
-from dz8.ex8_1 import quick_sort
-from dz8.ex8_1 import stalin_sort
+from dz_8.ex8_1 import bubble_sort
+from dz_8.ex8_1 import quick_sort
+from dz_8.ex8_1 import stalin_sort
 
 @pytest.mark.parametrize(
     ('start', 'end'),
