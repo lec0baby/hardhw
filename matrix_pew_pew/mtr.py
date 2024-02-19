@@ -8,16 +8,19 @@ class Matrix:
         self.elements = []
         while True:
             try:
-                print('Введите числа:')
-                self.rows, self.columns = int(input()), int(input())
+                print('Введите  числа:')
+                self.rows, self.columns = int(input('Кол-во строк = ')), int(input('Кол-во столбцов = '))
             except ValueError:
                 continue 
             else:
                 break
         for i in range(self.rows):
-            self.elements.append(list(map(int, input(f'Введите элементы строки №{i+1}: ').split())))        
+            self.elements.append(list(map(float, input(f'Введите элементы строки №{i+1}: ').split())))                  
             if len(self.elements[i]) != self.columns:
                 raise ValueError('Некорректно введены элементы строки')
+            for k in range(self.columns):
+                if self.elements[i][k] % 1 == 0:
+                    self.elements[i][k] = int(self.elements[i][k])
         
     def __str__(self):
         output = ''
