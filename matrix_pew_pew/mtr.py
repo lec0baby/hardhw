@@ -18,12 +18,9 @@ class Matrix:
             self.elements.append(list(map(float, input(f'Введите элементы строки №{i+1}: ').split())))                  
             if len(self.elements[i]) != self.columns:
                 raise ValueError('Некорректно введены элементы строки')
-            for k in range(self.columns):
-                if self.elements[i][k] % 1 == 0:
-                    self.elements[i][k] = int(self.elements[i][k])
         
     def __str__(self):
         output = ''
         for j in range(self.rows):
             output += ' '.join(str(i) for i in self.elements[j]) + '\n'
-        return output + f'Количество строк: {self.rows}\n' + f'Количество столбцов: {self.columns}'
+        return output

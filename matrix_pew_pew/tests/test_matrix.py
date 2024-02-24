@@ -13,6 +13,8 @@ def test_init(rows, columns, elements):
     assert m.rows == rows
     assert m.columns == columns
     assert m.elements == elements
+    
+def test_init_default():
     m1 = Matrix()
     assert m1.rows == 0
     assert m1.columns == 0
@@ -35,10 +37,10 @@ def test_much_el(mocker):
 @pytest.mark.parametrize(
         ('rows1', 'columns1', 'elements1', 'result'),
         [
-        (2, 4, [[1, 1, 1, 1], [1, 1, 1, 1]], '1 1 1 1\n1 1 1 1\nКоличество строк: 2\nКоличество столбцов: 4'),
-        (2, 3, [[3.14, 1, 1], [1, 1, 3.14]], '3.14 1 1\n1 1 3.14\nКоличество строк: 2\nКоличество столбцов: 3')
+        (2, 4, [[1.0, 1.0, 1.0, 1.0], [1.0, 1.0, 1.0, 1.0]], '1.0 1.0 1.0 1.0\n1.0 1.0 1.0 1.0\n'),
+        (2, 3, [[3.14, 1.0, 1.0], [1.0, 1.0, 3.14]], '3.14 1.0 1.0\n1.0 1.0 3.14\n')
         ]
 )
 
 def test_output(rows1, columns1, elements1, result):
-    assert Matrix.__str__(Matrix(rows1, columns1, elements1)) == result
+    assert str(Matrix(rows1, columns1, elements1)) == result
