@@ -1,4 +1,4 @@
-with open('X:\Programmes\hardhw\hardhw\zavgor\\arc\in.txt', 'r') as f_in:
+with open('in.txt', 'r') as f_in:
     data = f_in.read()
 
 compressed_data = ''
@@ -8,5 +8,5 @@ for char in data:
     else:
         compressed_data += char
 
-with open('X:\Programmes\hardhw\hardhw\zavgor\\arc\out.txt', 'w') as f_out:
+with open('out.txt', 'w') as f_out:
     f_out.write(compressed_data)
