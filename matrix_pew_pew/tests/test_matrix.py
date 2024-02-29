@@ -1,5 +1,5 @@
 import pytest
-from mtr import Matrix
+from mtr import Matrix, Matrix3x3
 
 @pytest.mark.parametrize(
         ('rows', 'columns', 'elements'),
@@ -44,3 +44,19 @@ def test_much_el(mocker):
 
 def test_output(rows1, columns1, elements1, result):
     assert str(Matrix(rows1, columns1, elements1)) == result
+    
+@pytest.mark.parametrize(
+        ('rows', 'columns', 'elements', 'result'),
+        [
+        (3, 3, [[1, 1, 1],[1, 1, 1], [1, 1, 1]], 0),
+        (3, 3, [[3, 3, 3],[3, 3, 3], [3, 3, 3]], 0),
+        (3, 3, [[1, 2, 3],[4, 5, 6], [7, 8, 9]], 0),
+        (3, 3, [[8, 9, 2],[7, 2, 8], [1, 6, 4]], -420.0),
+        (3, 3, [[17, 7, 1],[9, 10, 4], [3, 13, 18]], 1213.0),
+        (3, 3, [[9.7, 6.3, 1.2],[5.2, 11.9, 7.4], [6.4, 3.1, 1.1]], 94.739)
+        ]
+)
+
+def test_determinant(rows, columns, elements, result):
+    m = Matrix3x3(rows, columns, elements)
+    assert m.determinant() == result

@@ -24,3 +24,14 @@ class Matrix:
         for j in range(self.rows):
             output += ' '.join(str(i) for i in self.elements[j]) + '\n'
         return output
+    
+    
+class Matrix3x3(Matrix):
+    def determinant(self):
+        return self.elements[0][0] * self.elements[1][1] * self.elements[2][2] + self.elements[1][0] * self.elements[2][1] * self.elements[0][2] + self.elements[0][1] * self.elements[1][2] * self.elements[2][0] - self.elements[2][0] * self.elements[1][1] * self.elements[0][2] - self.elements[0][1] * self.elements[1][0] * self.elements[2][2] - self.elements[1][2] * self.elements[2][1] * self.elements[0][0]
+    
+
+if __name__ == "__main__":
+    n = Matrix3x3()
+    n.input_matrix()
+    print(n.determinant())
