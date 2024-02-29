@@ -60,3 +60,16 @@ def test_output(rows1, columns1, elements1, result):
 def test_determinant(rows, columns, elements, result):
     m = Matrix3x3(rows, columns, elements)
     assert m.determinant() == result
+
+@pytest.mark.xfail(raises=ValueError)    
+def test_methods():
+    Matrix3x3(2, 2, [[1, 1], [1, 1]])
+    
+def test_input_3x3(mocker):
+    mocker.patch('builtins.input', side_effect = ['1 2 3', '4 5 6', '7 8 9'])
+    matrix = Matrix3x3()
+    matrix.input_matrix()
+    assert matrix.rows == 3
+    assert matrix.columns == 3
+    assert matrix.elements == [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+    assert matrix.determinant() == 0
