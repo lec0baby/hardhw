@@ -29,9 +29,7 @@ class Matrix:
         
 class Matrix3x3(Matrix):
     def __init__(self, elements = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]):
-        self.elements = elements
-        self.rows = 3
-        self.columns = 3
+       super().__init__(3, 3, elements)
 
     def input_matrix(self):
         print('Матрица размерами 3x3')
