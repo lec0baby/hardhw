@@ -23,8 +23,7 @@ def test_init_default():
 def test_input(mocker):
     mocker.patch('builtins.input', side_effect = ['2', '3', '1 2 3', '4 5 6'])
     matrix = Matrix()
-    matrix.input_size()
-    matrix.input_elements()
+    matrix.input_matrix()
     assert matrix.rows == 2
     assert matrix.columns == 3
     assert matrix.elements == [[1, 2, 3], [4, 5, 6]]
@@ -33,8 +32,7 @@ def test_input(mocker):
 def test_much_el(mocker):
     mocker.patch('builtins.input', side_effect = ['2', '3', '1 2 3', '4 5 6 7'])
     matrix = Matrix()
-    matrix.input_size()
-    matrix.input_elements()
+    matrix.input_matrix()
     
 @pytest.mark.parametrize(
         ('rows1', 'columns1', 'elements1', 'result'),

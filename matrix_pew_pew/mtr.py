@@ -20,6 +20,10 @@ class Matrix:
             self.elements.append(list(map(float, input(f'Введите элементы строки №{i+1}: ').split())))                  
             if len(self.elements[i]) != self.columns:
                 raise ValueError('Некорректно введены элементы строки')
+            
+    def input_matrix(self):
+        self.input_size()
+        self.input_elements()
         
     def __str__(self):
         output = ''
