@@ -23,7 +23,8 @@ def test_init_default():
 def test_input(mocker):
     mocker.patch('builtins.input', side_effect = ['2', '3', '1 2 3', '4 5 6'])
     matrix = Matrix()
-    matrix.input_matrix()
+    matrix.input_size()
+    matrix.input_elements()
     assert matrix.rows == 2
     assert matrix.columns == 3
     assert matrix.elements == [[1, 2, 3], [4, 5, 6]]
@@ -32,7 +33,8 @@ def test_input(mocker):
 def test_much_el(mocker):
     mocker.patch('builtins.input', side_effect = ['2', '3', '1 2 3', '4 5 6 7'])
     matrix = Matrix()
-    matrix.input_matrix()
+    matrix.input_size()
+    matrix.input_elements()
     
 @pytest.mark.parametrize(
         ('rows1', 'columns1', 'elements1', 'result'),
@@ -46,24 +48,26 @@ def test_output(rows1, columns1, elements1, result):
     assert str(Matrix(rows1, columns1, elements1)) == result
     
 @pytest.mark.parametrize(
-        ('rows', 'columns', 'elements', 'result'),
+        ('elements', 'result'),
         [
-        (3, 3, [[1, 1, 1],[1, 1, 1], [1, 1, 1]], 0),
-        (3, 3, [[3, 3, 3],[3, 3, 3], [3, 3, 3]], 0),
-        (3, 3, [[1, 2, 3],[4, 5, 6], [7, 8, 9]], 0),
-        (3, 3, [[8, 9, 2],[7, 2, 8], [1, 6, 4]], -420.0),
-        (3, 3, [[17, 7, 1],[9, 10, 4], [3, 13, 18]], 1213.0),
-        (3, 3, [[9.7, 6.3, 1.2],[5.2, 11.9, 7.4], [6.4, 3.1, 1.1]], 94.739)
+        ([[1, 1, 1],[1, 1, 1], [1, 1, 1]], 0),
+        ([[3, 3, 3],[3, 3, 3], [3, 3, 3]], 0),
+        ([[1, 2, 3],[4, 5, 6], [7, 8, 9]], 0),
+        ([[8, 9, 2],[7, 2, 8], [1, 6, 4]], -420.0),
+        ([[17, 7, 1],[9, 10, 4], [3, 13, 18]], 1213.0),
+        ([[9.7, 6.3, 1.2],[5.2, 11.9, 7.4], [6.4, 3.1, 1.1]], 94.739)
         ]
 )
 
-def test_determinant(rows, columns, elements, result):
-    m = Matrix3x3(rows, columns, elements)
+def test_determinant(elements, result):
+    m = Matrix3x3(elements)
     assert m.determinant() == result
 
-@pytest.mark.xfail(raises=ValueError)    
-def test_methods():
-    Matrix3x3(2, 2, [[1, 1], [1, 1]])
+def test_init_3x3():
+    m = Matrix3x3([[1, 1, 1], [1, 1, 1], [1, 1, 1]])
+    assert m.rows == 3
+    assert m.columns == 3
+    assert m.elements == [[1, 1, 1], [1, 1, 1], [1, 1, 1]]
     
 def test_input_3x3(mocker):
     mocker.patch('builtins.input', side_effect = ['1 2 3', '4 5 6', '7 8 9'])
