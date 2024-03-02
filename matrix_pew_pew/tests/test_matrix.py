@@ -21,7 +21,7 @@ def test_init_default():
     assert m1.elements == []
 
 def test_input(mocker):
-    mocker.patch('builtins.input', side_effect = ['2', '3', '1 2 3', '4 5 6'])
+    mocker.patch('builtins.input', side_effect=['2', '3', '1 2 3', '4 5 6'])
     matrix = Matrix()
     matrix.input_matrix()
     assert matrix.rows == 2
