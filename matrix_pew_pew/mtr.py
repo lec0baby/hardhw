@@ -1,10 +1,12 @@
 class Matrix: 
-    def __init__(self, rows = 0, columns = 0, elements = []):
+    def __init__(self, rows=0, columns=0, elements=None):
+        if elements is None:
+            elements = []
         self.rows = rows
         self.columns = columns
         self.elements = elements
     
-    def input_size(self):
+    def _input_size(self):
         while True:
             try:
                 print('Введите  числа:')
@@ -14,7 +16,7 @@ class Matrix:
             else:
                 break
     
-    def input_elements(self):
+    def _input_elements(self):
         self.elements = []
         for i in range(self.rows):
             self.elements.append(list(map(float, input(f'Введите элементы строки №{i+1}: ').split())))                  
@@ -22,8 +24,8 @@ class Matrix:
                 raise ValueError('Некорректно введены элементы строки')
             
     def input_matrix(self):
-        self.input_size()
-        self.input_elements()
+        self._input_size()
+        self._input_elements()
         
     def __str__(self):
         output = ''
@@ -32,18 +34,29 @@ class Matrix:
         return output
         
 class Matrix3x3(Matrix):
-    def __init__(self, elements = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]):
-       super().__init__(3, 3, elements)
+    def __init__(self, elements=None):
+        if elements is None:
+            elements = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
+        super().__init__(3, 3, elements)
+        for i in range(self.rows):
+            if len(self.elements[i]) != self.columns:
+                raise ValueError('ERROR')
 
     def input_matrix(self):
         print('Матрица размерами 3x3')
-        super().input_elements()
+        super()._input_elements()
             
     def determinant(self):
-        return self.elements[0][0] * self.elements[1][1] * self.elements[2][2] + self.elements[1][0] * self.elements[2][1] * self.elements[0][2] + self.elements[0][1] * self.elements[1][2] * self.elements[2][0] - self.elements[2][0] * self.elements[1][1] * self.elements[0][2] - self.elements[0][1] * self.elements[1][0] * self.elements[2][2] - self.elements[1][2] * self.elements[2][1] * self.elements[0][0]
+        return (
+            self.elements[0][0] * self.elements[1][1] * self.elements[2][2] 
+            + self.elements[1][0] * self.elements[2][1] * self.elements[0][2]
+            + self.elements[0][1] * self.elements[1][2] * self.elements[2][0]
+            - self.elements[2][0] * self.elements[1][1] * self.elements[0][2]
+            - self.elements[0][1] * self.elements[1][0] * self.elements[2][2]
+            - self.elements[1][2] * self.elements[2][1] * self.elements[0][0]
+        )
     
 
 if __name__ == "__main__":
-    n = Matrix3x3()
-    n.input_matrix()
-    print(n.determinant())
+    m = Matrix3x3([[1, 1, 1], [1, 1, 1], [1, 1, 1, 1]])
+    print(m.determinant())

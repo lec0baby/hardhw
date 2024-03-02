@@ -75,3 +75,7 @@ def test_input_3x3(mocker):
     assert matrix.columns == 3
     assert matrix.elements == [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
     assert matrix.determinant() == 0
+
+@pytest.mark.xfail(raises=ValueError)
+def test_elements_3x3():
+    Matrix3x3([[1, 1, 1], [1, 1, 1], [1, 1, 1, 1]])
