@@ -28,7 +28,7 @@ class Matrix:
         self._input_elements()
         
     def __add__(self, other):
-        if type(other) is Matrix:
+        if isinstance(other, Matrix):
             if self.rows == other.rows and self.columns == other.columns:    
                 new_elements = []
                 for i in range(self.rows):
@@ -38,23 +38,12 @@ class Matrix:
                     new_elements.append(help_el)
                 return Matrix(self.rows, self.columns, new_elements)
             else:
-                raise ValueError('Матрицы должны быть одного размера')
-        elif (type(other) is list) and (all(isinstance(ele, list) for ele in other) is True):
-            if (len(other) == self.rows) or (len(other[i] for i in range(len(other))) == self.columns):
-                new_elements = []
-                for j in range(self.rows):
-                    help_el = []
-                    for k in range(self.columns):
-                            help_el.append(self.elements[j][k] + other[j][k])
-                    new_elements.append(help_el)
-                return Matrix(self.rows, self.columns, new_elements)
-            else:
-                ValueError('Матрицы должны быть одного размера') 
+                raise ValueError('Матрицы должны быть одного размера') 
         else:
             raise ValueError('Операция сложения невозможна')
         
     def __sub__(self, other):
-        if type(other) is Matrix:
+        if isinstance(other, Matrix):
             if self.rows == other.rows and self.columns == other.columns:    
                 new_elements = []
                 for i in range(self.rows):
@@ -64,27 +53,13 @@ class Matrix:
                     new_elements.append(help_el)
                 return Matrix(self.rows, self.columns, new_elements)
             else:
-                raise ValueError('Матрицы должны быть одного размера')
-        elif (type(other) is list) and (all(isinstance(ele, list) for ele in other) is True):
-            if (len(other) == self.rows) or (len(other[i] for i in range(len(other))) == self.columns):
-                new_elements = []
-                for j in range(self.rows):
-                    help_el = []
-                    for k in range(self.columns):
-                            help_el.append(self.elements[j][k] - other[j][k])
-                    new_elements.append(help_el)
-                return Matrix(self.rows, self.columns, new_elements)
-            else:
-                ValueError('Матрицы должны быть одного размера') 
+                raise ValueError('Матрицы должны быть одного размера') 
         else:
             raise ValueError('Операция вычитания невозможна')
         
     def __eq__(self, other):
-        if type(other) is Matrix:
-            if (self.rows == other.rows) and (self.columns == other.columns) and (self.elements == other.elements):
-                return True
-            else:
-                return False
+        if type(other) is Matrix or Matrix3x3:
+            return self.elements == other.elements
         else:
             raise ValueError('Невозможно сравнить')
         
@@ -119,9 +94,9 @@ class Matrix3x3(Matrix):
     
 
 if __name__ == "__main__":
-    m1 = Matrix(3, 3, [[1, 1, 1], [1, 1, 1], [1, 1, 1]])
-    m2 = Matrix(3, 3, [[1, 1, 1], [1, 1, 1], [1, 1, 1]])
-    m3 = Matrix(3, 3, [[2, 2, 2], [2, 2, 2], [2, 2, 2]])
+    m1 = Matrix3x3([[1, 1, 1], [1, 1, 1], [1, 1, 1]])
+    m2 = Matrix3x3([[1, 1, 1], [1, 1, 1], [1, 1, 1]])
+    m3 = Matrix3x3([[2, 2, 2], [2, 2, 2], [2, 2, 2]])
     if m1 + m2 == m3:
         print('да')
     else:
