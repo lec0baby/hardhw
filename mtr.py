@@ -35,7 +35,7 @@ class Matrix:
                 for j in range(other1.columns):
                     help_el.append(other1.elements[i][j] + other2.elements[i][j])
                 new_elements.append(help_el)
-            return Matrix(other1.rows, other1.columns, new_elements)
+            return new_elements
         else:
             raise ValueError('Матрицы должны быть одного размера')
         
@@ -47,24 +47,27 @@ class Matrix:
                 for j in range(other1.columns):
                     help_el.append(other1.elements[i][j] - other2.elements[i][j])
                 new_elements.append(help_el)
-            return Matrix(other1.rows, other1.columns, new_elements)
+            return new_elements
         else:
             raise ValueError('Матрицы должны быть одного размера') 
         
     def __add__(self, other):
-        if isinstance(other, Matrix):
-            self._plus(self, other) 
+        if isinstance(other, Matrix3x3):
+            return Matrix3x3(self._plus(self, other))
+        elif isinstance(other, Matrix):
+            return (self.rows, self.columns, self._plus(self, other))
         else:
             raise ValueError('Операция сложения невозможна')
         
     def __sub__(self, other):
-        if isinstance(other, Matrix):
-            self._minus(self,other)
+        if isinstance(other, Matrix3x3):
+            return Matrix3x3(self._minus(self, other))
+        elif isinstance(other, Matrix):
+            return (self.rows, self.columns, self._minus(self, other))
         else:
             raise ValueError('Операция вычитания невозможна')
         
     def __eq__(self, other):
-        assert isinstance(other, Matrix)
         if isinstance(other, Matrix):
             return self.elements == other.elements
         else:
@@ -101,10 +104,11 @@ class Matrix3x3(Matrix):
     
 
 if __name__ == "__main__":
-    m1 = Matrix3x3([[1, 1, 1], [1, 1, 1], [1, 1, 1]])
+    m1 = Matrix(3, 3, [[1, 1, 1], [1, 1, 1], [1, 1, 1]])
     m2 = Matrix3x3([[1, 1, 1], [1, 1, 1], [1, 1, 1]])
     m3 = Matrix3x3([[2, 2, 2], [2, 2, 2], [2, 2, 2]])
-    if m1 + m2 == m3:
+    '''if m1 + m2 == m3:
         print('да')
     else:
-        print('нет')
+        print('нет')'''
+    print(isinstance(m1, Matrix3x3))
