@@ -26,39 +26,49 @@ class Matrix:
     def input_matrix(self):
         self._input_size()
         self._input_elements()
+
+    def _plus(self, other1, other2):
+        if other1.rows == other2.rows and other1.columns == other2.columns:    
+            new_elements = []
+            for i in range(other1.rows):
+                help_el = []
+                for j in range(other1.columns):
+                    help_el.append(other1.elements[i][j] + other2.elements[i][j])
+                new_elements.append(help_el)
+            return new_elements
+        else:
+            raise ValueError('Матрицы должны быть одного размера')
+        
+    def _minus(self, other1, other2):
+        if other1.rows == other2.rows and other1.columns == other2.columns:    
+            new_elements = []
+            for i in range(other1.rows):
+                help_el = []
+                for j in range(other1.columns):
+                    help_el.append(other1.elements[i][j] - other2.elements[i][j])
+                new_elements.append(help_el)
+            return new_elements
+        else:
+            raise ValueError('Матрицы должны быть одного размера') 
         
     def __add__(self, other):
-        if isinstance(other, Matrix):
-            if self.rows == other.rows and self.columns == other.columns:    
-                new_elements = []
-                for i in range(self.rows):
-                    help_el = []
-                    for j in range(self.columns):
-                        help_el.append(self.elements[i][j] + other.elements[i][j])
-                    new_elements.append(help_el)
-                return Matrix(self.rows, self.columns, new_elements)
-            else:
-                raise ValueError('Матрицы должны быть одного размера') 
+        if isinstance(other, Matrix3x3):
+            return Matrix3x3(self._plus(self, other))
+        elif isinstance(other, Matrix):
+            return Matrix(self.rows, self.columns, self._plus(self, other))
         else:
             raise ValueError('Операция сложения невозможна')
         
     def __sub__(self, other):
-        if isinstance(other, Matrix):
-            if self.rows == other.rows and self.columns == other.columns:    
-                new_elements = []
-                for i in range(self.rows):
-                    help_el = []
-                    for j in range(self.columns):
-                        help_el.append(self.elements[i][j] - other.elements[i][j])
-                    new_elements.append(help_el)
-                return Matrix(self.rows, self.columns, new_elements)
-            else:
-                raise ValueError('Матрицы должны быть одного размера') 
+        if isinstance(other, Matrix3x3):
+            return Matrix3x3(self._minus(self, other))
+        elif isinstance(other, Matrix):
+            return (self.rows, self.columns, self._minus(self, other))
         else:
             raise ValueError('Операция вычитания невозможна')
         
     def __eq__(self, other):
-        if type(other) is Matrix or Matrix3x3:
+        if isinstance(other, Matrix):
             return self.elements == other.elements
         else:
             raise ValueError('Невозможно сравнить')
@@ -94,10 +104,11 @@ class Matrix3x3(Matrix):
     
 
 if __name__ == "__main__":
-    m1 = Matrix3x3([[1, 1, 1], [1, 1, 1], [1, 1, 1]])
+    m1 = Matrix(3, 3, [[1, 1, 1], [1, 1, 1], [1, 1, 1]])
     m2 = Matrix3x3([[1, 1, 1], [1, 1, 1], [1, 1, 1]])
     m3 = Matrix3x3([[2, 2, 2], [2, 2, 2], [2, 2, 2]])
-    if m1 + m2 == m3:
+    '''if m1 + m2 == m3:
         print('да')
     else:
-        print('нет')
+        print('нет')'''
+    print(isinstance(m1, Matrix3x3))

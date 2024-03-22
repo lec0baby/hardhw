@@ -1,5 +1,5 @@
 import pytest
-from mtr import Matrix, Matrix3x3
+from matrix_pew_pew.mtr import Matrix, Matrix3x3
 
 @pytest.mark.parametrize(
         ('rows', 'columns', 'elements'),
@@ -26,7 +26,7 @@ def test_input(mocker):
     matrix.input_matrix()
     assert matrix.rows == 2
     assert matrix.columns == 3
-    assert matrix.elements == [[1, 2, 3], [4, 5, 6]]
+    assert matrix.elements == [[1.0, 2.0, 3.0], [4.0, 5.0, 6.0]]
         
 @pytest.mark.xfail(raises=ValueError)
 def test_much_el(mocker):
@@ -81,30 +81,28 @@ def test_elements_3x3():
     Matrix3x3([[1, 1, 1], [1, 1, 1], [1, 1, 1, 1]])
 
 @pytest.mark.parametrize(
-        ('rows', 'columns', 'el1', 'el2', 'lst', 'result'),
+        ('rows', 'columns', 'el1', 'el2', 'result'),
         [
-        (3, 3, [[1, 1, 1], [1, 1, 1], [1, 1, 1]], [[1, 1, 1], [1, 1, 1], [1, 1, 1]], [[1, 1, 1], [1, 1, 1], [1, 1, 1]], [[2, 2, 2], [2, 2, 2], [2, 2, 2]]),
-        (2, 2, [[2, 3], [1, 4]], [[5, 7], [3, 8]], [[5, 7], [3, 8]], [[7, 10], [4, 12]]),
-        (4, 2, [[1, 1], [1, 1], [1, 1], [1, 1]], [[1, 1], [1, 1], [1, 1], [1, 1]], [[1, 1], [1, 1], [1, 1], [1, 1]], [[2, 2], [2, 2], [2, 2], [2, 2]])
+        (3, 3, [[1, 1, 1], [1, 1, 1], [1, 1, 1]], [[1, 1, 1], [1, 1, 1], [1, 1, 1]], [[2, 2, 2], [2, 2, 2], [2, 2, 2]]),
+        (2, 2, [[2, 3], [1, 4]], [[5, 7], [3, 8]], [[7, 10], [4, 12]]),
+        (4, 2, [[1, 1], [1, 1], [1, 1], [1, 1]], [[1, 1], [1, 1], [1, 1], [1, 1]], [[2, 2], [2, 2], [2, 2], [2, 2]])
         ]
 )
 
-def test_add(rows, columns, el1, el2, lst, result):
+def test_add(rows, columns, el1, el2, result):
     assert Matrix(rows, columns, el1) + Matrix(rows, columns, el2) == Matrix(rows, columns, result)
-    assert Matrix(rows, columns, el1) + lst == Matrix(rows, columns, result)
 
-@pytest.mark.parametrize(
-        ('rows', 'columns', 'el1', 'el2', 'lst', 'result'),
+@pytest.mark.parametrize( 
+        ('rows', 'columns', 'el1', 'el2', 'result'),
         [
-        (3, 3, [[1, 1, 1], [1, 1, 1], [1, 1, 1]], [[1, 1, 1], [1, 1, 1], [1, 1, 1]], [[1, 1, 1], [1, 1, 1], [1, 1, 1]], [[0, 0, 0], [0, 0, 0], [0, 0, 0]]),
-        (2, 2, [[2, 3], [1, 4]], [[5, 7], [3, 8]], [[5, 7], [3, 8]], [[-3, -4], [-2, -4]]),
-        (4, 2, [[1, 1], [1, 1], [1, 1], [1, 1]], [[1, 1], [1, 1], [1, 1], [1, 1]], [[1, 1], [1, 1], [1, 1], [1, 1]], [[0, 0], [0, 0], [0, 0], [0, 0]])
+        (3, 3, [[1, 1, 1], [1, 1, 1], [1, 1, 1]], [[1, 1, 1], [1, 1, 1], [1, 1, 1]],  [[0, 0, 0], [0, 0, 0], [0, 0, 0]]),
+        (2, 2, [[2, 3], [1, 4]], [[5, 7], [3, 8]], [[-3, -4], [-2, -4]]),
+        (4, 2, [[1, 1], [1, 1], [1, 1], [1, 1]], [[1, 1], [1, 1], [1, 1], [1, 1]], [[0, 0], [0, 0], [0, 0], [0, 0]])
         ]
 )
 
-def test_sub(rows, columns, el1, el2, lst, result):
+def test_sub(rows, columns, el1, el2, result):
     assert Matrix(rows, columns, el1) - Matrix(rows, columns, el2) == Matrix(rows, columns, result)
-    assert Matrix(rows, columns, el1) - lst == Matrix(rows, columns, result)
     
 @pytest.mark.xfail(raises=ValueError)
 def test_add_sub_errors():
@@ -112,5 +110,12 @@ def test_add_sub_errors():
     m2 = Matrix(3, 3, [[1, 1, 1], [1, 1, 1], [1, 1, 1]])
     assert m1 + m2
     assert m1 - m2
+    assert m1 + 2
+    assert m2 - 2
+
+@pytest.mark.xfail(raises=ValueError)
+def test_add_sub_errors_3x3():
+    m1 = Matrix3x3([[1, 1, 1], [1, 1, 1], [1, 1, 1]])
+    m2 = Matrix3x3([[1, 1, 1], [1, 1, 1], [1, 1, 1]])
     assert m1 + 2
     assert m2 - 2
