@@ -63,7 +63,7 @@ class Matrix:
         if isinstance(other, Matrix3x3):
             return Matrix3x3(self._minus(self, other))
         elif isinstance(other, Matrix):
-            return (self.rows, self.columns, self._minus(self, other))
+            return Matrix(self.rows, self.columns, self._minus(self, other))
         else:
             raise ValueError('Операция вычитания невозможна')
         
